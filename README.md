@@ -1,3 +1,29 @@
+Exp.No : 02 
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+Date : 29.03.2023
+<br>
+
 # Fitting Poisson  distribution
 # Aim : 
 
@@ -25,42 +51,72 @@ The Poisson distribution is the discrete probability distribution of the number 
 ![image](https://user-images.githubusercontent.com/104613195/166251988-d0c53205-6080-4f7b-ae4c-398178586637.png)
 
 # Experiment :
-![exp 2](1.jpeg)
 
+![image](https://user-images.githubusercontent.com/103921593/230282876-f4a5afbf-cac1-4648-a1b0-c78840638a8e.png)
 
 # Program :
+```pyhton
+Program by: Kaushika A
+reg no:212221230048
 ```
-Developed by: Naveen Kumar S
-reg no:212221240033
-```
-```
+```python
 import numpy as np
 import math
 import scipy.stats
+
 L=[int(i) for i in input().split()]
-N=len(L); M=max(L) 
-X=list();f=list()
+N=len(L)
+M=max(L)
+x=list()
+f=list()
 for i in range (M+1):
-    c = 0
+    c=0
     for j in range(N):
         if L[j]==i:
             c=c+1
-    f.append(c)
-    X.append(i)
-sf=np.sum(f)
+    f.append(c);
+    x.append(i)
+print(x)
+print(f)
+```
+ <br>
+
+ ```python
+ sf=np.sum(f)
+sf
+```
+<br>
+
+```python
 p=list()
-for i in range(M+1):
-    p.append(f[i]/sf) 
-mean=np.inner(X,p)
-p=list();E=list();xi=list()
+for i in range (M+1):
+    p.append(f[i]/sf)
+print(p)
+```
+<br>
+
+```python
+mean=np.inner(x,p)
+mean
+```
+<br>
+
+```python
+P=list()
+E=list()
+xi=list()
 print("X P(X=x) Obs.Fr Exp.Fr xi")
 print("--------------------------")
 for x in range(M+1):
-    p.append(math.exp(-mean)*mean**x/math.factorial(x))
-    E.append(p[x]*sf)
+    P.append(math.exp(-mean)*mean**x/math.factorial(x))
+    E.append(P[x]*sf)
     xi.append((f[x]-E[x])**2/E[x])
-    print("%2.2f %2.3f %4.2f %3.2f %3.2f"%(x,p[x],f[x],E[x],xi[x]))
+    print("%2.2f %2.3f %4.2f %3.2f %3.2f"%(x,P[x],f[x],E[x],xi[x]))
 print("--------------------------")
+```
+<br>
+
+```python
 cal_chi2_sq=np.sum(xi)
 print("Calculated value of Chi square is %4.2f"%cal_chi2_sq)
 table_chi2=scipy.stats.chi2.ppf(1-.01,df=M)
@@ -69,8 +125,28 @@ if cal_chi2_sq<table_chi2:
     print("The given data can be fitted in poisson Distribution at 1% LOS")
 else:
     print("The given data cannot be fitted in Poisson Distribution at 1% LOS")
-        
 ```
-# Results and Output : 
- ![194226507-76ba502e-5a13-4783-8dac-d36bb0fb4db1](https://user-images.githubusercontent.com/94168395/195506884-60443103-3d9e-4631-b2e1-4a2fe10ac765.png)
+# Output : 
+## input, x and x occurance list
+![](1.PNG)
 
+## sum of occurances
+![](2.PNG)
+
+## probability list
+![](3.PNG)
+
+## mean x
+![](.4.PNG)
+
+## Poisson Distribution Table
+![](5.PNG)
+
+## precision metrics
+![](6.PNG)
+
+
+# Results
+
+The Poisson distribution is fitted for the objects arrived from feeder per minute and the data is tested using Chi-square test. 
+ 
